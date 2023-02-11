@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:listinha_app/src/home/home_page.dart';
 part 'src/shared/themes/color_schemes.g.dart';
 part 'src/shared/themes/themes.dart';
 
@@ -12,18 +13,7 @@ class AppWidget extends StatelessWidget {
       themeMode: ThemeMode.light,
       theme: lightTheme,
       darkTheme: darkTheme,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('LISTINHA'),
-        ),
-        body: const Center(
-          child: Text('Hello World!'),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: const Text('+'),
-        ),
-      ),
+      home: const HomePage(),
     );
   }
 }
