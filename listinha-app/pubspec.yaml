@@ -1,0 +1,25 @@
+name: listinha_app
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=2.19.2 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_modular: ^5.0.3
+  realm: ^1.0.0
+  result_dart: ^1.0.5
+  uno: ^1.0.1+5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  mocktail: ^0.3.0
+  flutterando_analysis: ^0.0.2
+
+flutter:
+  uses-material-design: true
