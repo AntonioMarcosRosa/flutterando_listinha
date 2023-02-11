@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:listinha_app/src/home/home_page.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 part 'src/shared/themes/color_schemes.g.dart';
 part 'src/shared/themes/themes.dart';
 
@@ -8,12 +8,15 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    Modular.setInitialRoute('/home/');
+
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,
       theme: lightTheme,
       darkTheme: darkTheme,
-      home: const HomePage(),
+      routerDelegate: Modular.routerDelegate,
+      routeInformationParser: Modular.routeInformationParser,
     );
   }
 }
