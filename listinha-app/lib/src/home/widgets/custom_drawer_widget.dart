@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 import 'package:listinha_app/src/shared/stores/app_store.dart';
+import 'package:rx_notifier/rx_notifier.dart';
 
 class CustomDrawerWidget extends StatelessWidget {
   const CustomDrawerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final appStore = context.watch<AppStore>(
-      (store) => store.syncDate,
-    );
-    final syncDate = appStore.syncDate.value;
+    final appStore = context.read<AppStore>();
+    final syncDate = context.select(() => appStore.syncDate.value);
     var syncDateText = 'Nunca';
 
     if (syncDate != null) {

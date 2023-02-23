@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:listinha_app/src/shared/stores/app_store.dart';
+import 'package:rx_notifier/rx_notifier.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -10,12 +11,17 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  final appStore = Modular.get<AppStore>();
+
+  void _changeThemeMode(ThemeMode? mode) {
+    if (mode != null) {
+      appStore.themeMode.value = mode;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final appStore = context.watch<AppStore>(
-      (store) => store.themeMode,
-    );
-
+    context.select(() => appStore.themeMode.value);
     return Scaffold(
       appBar: AppBar(
         title: const Text('LISTINHA'),
@@ -39,19 +45,19 @@ class _SettingsPageState extends State<SettingsPage> {
               title: const Text('Light'),
               value: ThemeMode.light,
               groupValue: appStore.themeMode.value,
-              onChanged: appStore.changeTheme,
+              onChanged: _changeThemeMode,
             ),
             RadioListTile<ThemeMode>(
               title: const Text('Dark'),
               value: ThemeMode.dark,
               groupValue: appStore.themeMode.value,
-              onChanged: appStore.changeTheme,
+              onChanged: _changeThemeMode,
             ),
             RadioListTile<ThemeMode>(
               title: const Text('System'),
               value: ThemeMode.system,
               groupValue: appStore.themeMode.value,
-              onChanged: appStore.changeTheme,
+              onChanged: _changeThemeMode,
             ),
             const SizedBox(height: 16),
             Text(
